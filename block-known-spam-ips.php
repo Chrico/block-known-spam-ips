@@ -10,7 +10,7 @@
  * License URI: http://opensource.org/licenses/GPL-2.0
  */
 
-add_filter( 'preprocess_comment', 'marketpress_block_known_spam_ips' );
+add_filter( 'preprocess_comment', 'chrico_block_known_spam_ips' );
 
 /**
  * Look up comment IP in DB and reject if spam from this IP was found.
@@ -21,7 +21,7 @@ add_filter( 'preprocess_comment', 'marketpress_block_known_spam_ips' );
  *
  * @return  array|void Dies on success, returns the comment data otherwise
  */
-function marketpress_block_known_spam_ips( Array $commentdata ) {
+function chrico_block_known_spam_ips( Array $commentdata ) {
 
 	global $wpdb;
 
