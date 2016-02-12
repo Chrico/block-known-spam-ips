@@ -1,0 +1,16 @@
+{
+  "name": "chrico/block-known-spam-ips",
+  "description": "Rejects comments from IP addresses already found in your spam list.",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "Chris",
+      "email": "chris@chrico.info",
+      "homepage": "https://www.chrico.info",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.2.0"
+  }
+}
