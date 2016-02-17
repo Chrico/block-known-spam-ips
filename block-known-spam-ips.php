@@ -21,18 +21,14 @@ add_filter( 'preprocess_comment', 'chrico_block_known_spam_ips' );
  *
  * @return  array|void Dies on success, returns the comment data otherwise
  */
-function chrico_block_known_spam_ips( Array $commentdata ) {
-
+function chrico_block_known_spam_ips( $commentdata ) {
 	global $wpdb;
 
 	// Use the same code as WordPress, because that is what we find in our database.
 	$ip = preg_replace( '/[^0-9a-fA-F:., ]/', '', $_SERVER[ 'REMOTE_ADDR' ] );
 
-	$sql = "
-	SELECT `comment_author_IP`
-	FROM   `$wpdb->comments`
-	WHERE  `comment_author_IP` = '$ip' AND `comment_approved` = 'spam'
-	LIMIT  1";
+	$sql = "SELECT comment_author_IP FROM %s WHERE comment_author_IP = '%s' AND comment_approved = 'spam' LIMIT 1";
+	$sql = $wpdb->prepare( $sql, $wpdb->comments, $ip );
 
 	$match = $wpdb->get_results( $sql );
 
